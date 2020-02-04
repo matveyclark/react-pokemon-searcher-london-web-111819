@@ -5,6 +5,17 @@ import Search from './Search'
 import { Container } from 'semantic-ui-react'
 
 class PokemonPage extends React.Component {
+
+  state = {
+    searchTerm: null
+  }
+
+  updateSearchTerm = (e) => {
+    this.setState({
+      searchTerm: e.target.value
+    })
+  }
+
   render() {
     return (
       <Container>
@@ -12,9 +23,9 @@ class PokemonPage extends React.Component {
         <br />
         <PokemonForm />
         <br />
-        <Search onChange={() => console.log('🤔')} />
+        <Search onChange={this.updateSearchTerm} />
         <br />
-        <PokemonCollection />
+        <PokemonCollection searchTerm={this.state.searchTerm} />
       </Container>
     )
   }
